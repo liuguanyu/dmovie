@@ -1,0 +1,26 @@
+{
+  "name": "dmovie",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "bytes": "^3.0.0",
+    "chalk": "^2.3.0",
+    "commander": "^2.12.1",
+    "danmaku-to-ass": "^1.6.3",
+    "download": "^6.2.5",
+    "es6-promisify": "^5.0.0",
+    "fetch": "^1.1.0",
+    "ffmpeg": "^0.0.4",
+    "ffprobe": "^1.1.0",
+    "ffprobe-static": "^2.0.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "md5": "^2.2.1",
+    "multipart-download": "^0.5.0",
+    "progress": "^2.0.0",
+    "request": "^2.83.0",
+    "request-progress": "^3.0.0",
+    "xml2js": "^0.4.19",
+    "zlib": "^1.0.5"
+  }
+}

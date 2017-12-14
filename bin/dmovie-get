@@ -1,0 +1,53 @@
+#!/usr/bin/env node
+
+const program = require('commander')
+
+program
+	.option('-u, --url <url>', 'movie url')
+	.parse(process.argv) 
+
+let { url } = program
+
+const path = require("path")
+const fs = require("fs")
+
+let baseDir = "./"
+let workDir
+
+const setWorkDir = () => {
+	let date = +new Date()
+
+	workDir = baseDir + "/working-" + date + "/"
+
+	if (!fs.existsSync(workDir)) {
+		fs.mkdirSync(workDir);
+	}
+	else {
+		setWorkDir()
+	}
+}
+
+setWorkDir()
+
+const download = require("../lib/download")
+const movieInfo = require("../lib/movieinfo")
+const merge = require("../lib/merge")
+const convert = require("../lib/convert")
+
+download.download(url, workDir)
+	.then(info => {
+		let { danmu, movie, site, title } = info 
+
+		let getMovieInfo = movieInfo.getMovieInfo(movie)
+
+		let target = `${title}.mix.mp4`
+		let assFile = `${workDir}${title}.ass`
+		
+		return getMovieInfo.then(({width, height}) => {
+			convert.convertToAss(danmu, assFile, site)
+			return merge.merge(movie, assFile, target)
+		})
+	})
+	.then(_=>{
+		console.log("完成！\n")
+	})

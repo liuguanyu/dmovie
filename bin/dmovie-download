@@ -1,0 +1,33 @@
+#!/usr/bin/env node  
+
+const program = require('commander')
+
+program
+  .option('-u, --url <url>', 'movie url')
+  .parse(process.argv)
+
+let {url} = program
+
+const path = require("path")
+const fs = require("fs")
+
+let baseDir = "./"
+let workDir
+
+const setWorkDir = () => {
+  let date = +new Date()
+
+  workDir = baseDir + "/working-" + date + "/"
+
+  if (!fs.existsSync(workDir)) {
+    fs.mkdirSync(workDir);
+  }
+  else{
+    setWorkDir()
+  }
+}
+
+setWorkDir()
+
+const download = require("../lib/download")
+download.download(url, workDir)

@@ -1,0 +1,14 @@
+#!/usr/bin/env node  
+
+const program = require('commander')
+
+program
+  .option('-a, --ass <ass>', 'ass file')
+  .option('-d, --danmu <danmu>', 'target file')  
+  .parse(process.argv)
+
+let {ass, danmu} = program
+
+const convert = require("../lib/convert")
+
+convert.convertToAss(danmu, ass, "bilibili")

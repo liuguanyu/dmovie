@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+const program = require('commander')
+
+program
+  .version(require('../package').version)
+  .usage('<command> [options]')
+  .command('get', 'get a movie')
+  .command('info', 'get info of a movie')
+  .command('merge', 'merge ass to movie')
+  .command('download', 'download a movie')  
+  .command('convert', 'convert danmu to ass')  
+  .parse(process.argv)

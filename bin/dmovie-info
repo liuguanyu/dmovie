@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+const program = require('commander')
+
+program
+  .option('-m, --movie <movie>', 'movie file')
+  .parse(process.argv)
+
+let {movie} = program
+
+const info = require("../lib/movieinfo")
+info.getMovieInfo(movie)
+	.then((info) => {
+		console.log(info)
+	})

@@ -1,0 +1,15 @@
+#!/usr/bin/env node  
+
+const program = require('commander')
+
+program
+  .option('-m, --movie <movie>', 'movie file')
+  .option('-a, --ass <ass>', 'ass file')
+  .option('-t, --target <target>', 'target file')  
+  .parse(process.argv)
+
+let {movie, ass, target} = program
+
+const merge = require("../lib/merge")
+
+merge.merge(movie, ass, target)
