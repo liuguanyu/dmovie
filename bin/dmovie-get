@@ -48,6 +48,3 @@ download.download(url, workDir)
 			return merge.merge(movie, assFile, target)
 		})
 	})
-	.then(_=>{
-		console.log("完成！\n")
-	})
